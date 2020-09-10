@@ -1,0 +1,18 @@
+# Jupyter Notebook
+.ipynb_checkpoints
+*.ipynb
+
+# Data files
+*.mp4
+*.csv
+*.jpg
+*.h264
+
+# Raspios donwload and image
+*.img
+*.zip
+
+#Specific files
+/TestScripts
+README_old.md
+OPA_short.py

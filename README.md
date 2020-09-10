@@ -4,9 +4,9 @@ The goal of this project is to build a mobile version of the [Ocular Photosensit
 
 ## Approach
 
-
 ## Parts
-The hardware exist of 3 main components:
+<details>
+  <summary>Click here to see a description of all the parts.</summary>
 
 #### 1. The light source
 We choose to use 9 white light LEDs and use a Transistor for pulse with modulation dimming.
@@ -31,6 +31,7 @@ A raspberry pi controls the light source, the camera, button presses and stores 
 #### 5. Housing
 We used some PCB board to connect all LEDs. pAll parts were assembled inside a phone case to be able to use it with VR goggles
 
+</details>
 
 ## Assembling the parts
 

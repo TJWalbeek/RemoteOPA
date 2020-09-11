@@ -12,7 +12,8 @@ import pigpio
 
 ### File name and path ###
 path = '/home/pi/Recording'
-date = dt.datetime.now().strftime("%d-%m-%Y_%H_%M_%S")
+#date = dt.datetime.now().strftime("%d-%m-%Y_%H_%M_%S")
+date = dt.datetime.now().strftime("%Y-%m-%d_%H_%M_%S")
 name = 'TEST'
 filename     = name+'_'+date+'.h264'
 filename_csv = name+'_'+date+'.csv'
@@ -27,7 +28,15 @@ pi.set_mode(23, pigpio.INPUT)
 pi.set_pull_up_down(23, pigpio.PUD_UP)
 
 def pwm(x):
- pi.hardware_PWM(12, 60, x * 10000)
+ pi.hardware_PWM(12, 60, int(x * 10000))
+
+print("Ready to start. Press button when ready.")
+start = False
+while not start:
+    if pi.read(23) == 0:
+        start = True
+    time.sleep(0.5)
+print("Starting...")
 
 # Set up recording fuctions
 class MyOutput(object):
@@ -57,9 +66,10 @@ class MyOutput(object):
             self.output_file.close()
 
 
-pi.write(16,1)
+#pi.write(16,1)
+pi.hardware_PWM(13, 60, 100000)
 pwm(0)
-p = 1
+p = 0.125
 q = 0
 
 with picamera.PiCamera() as camera:
@@ -69,7 +79,7 @@ with picamera.PiCamera() as camera:
     print('Start recording')
     camera.start_recording(MyOutput(complete_path, complete_path_csv), format='h264')
     camera.wait_recording(5) #5
-    while p < 50:
+    while p < 20:
         pwm(p)
         q = p
         camera.wait_recording(2) #2
@@ -95,5 +105,6 @@ with picamera.PiCamera() as camera:
     except CalledProcessError as e:
         print('FAIL:\ncmd:{}\noutput:{}'.format(e.cmd, e.output))
 
-pi.write(16,0)
+#pi.write(16,0)
+pi.hardware_PWM(13, 60, 0)
 pi.stop()

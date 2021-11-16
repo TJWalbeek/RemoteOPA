@@ -3,11 +3,18 @@
 The goal of this project is to build a mobile version of the [Ocular Photosensitivity Analyzer (OPA)](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6238927/) that we can use to record light sensitivity outside the lab setting, like at peoples homes or in a hospital bed.
 
 ## Approach
-
+Through a couple of iterations I have built a Raspberry Pi-driven device with several components:
+- White light LEDs to deliver a light pulse in one eye
+- LED driver to dim the LEDs
+- IR camera with IR LED to record the pupil response in the other eye
+- A clock to provide a timestamp with each data point
+- A physical button for the user to interact with the device
+- A Raspberry Pi to connect all the components, control the lights, and record the data
+- Custom-designed Printed Circuit Board to keep all components together inside VR goggles  
 
 ## Parts
-<!-- <details> -->
-  <summary>Click here to see a description of all the parts.</summary>
+<!-- <details>
+  <summary>Click here to see a description of all the parts.</summary> -->
 
 #### 1. Housing
 We designed our own PCB and 3D-printed case. Both were designed to work with the empty case of VR goggles.

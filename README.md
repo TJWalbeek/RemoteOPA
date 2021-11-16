@@ -4,35 +4,46 @@ The goal of this project is to build a mobile version of the [Ocular Photosensit
 
 ## Approach
 
+
 ## Parts
-<details>
+<!-- <details> -->
   <summary>Click here to see a description of all the parts.</summary>
 
-#### 1. The light source
-We choose to use 9 white light LEDs and use a Transistor for pulse with modulation dimming.
-- [Diffused White 3mm LED](https://www.adafruit.com/product/778)
-- [NPN Bipolar Transistors (PN2222)](https://www.adafruit.com/product/756)
+#### 1. Housing
+We designed our own PCB and 3D-printed case. Both were designed to work with the empty case of VR goggles.
+- <img src="Resources/PCB.png" width="350"/>  
+- <img src="Resources/RemoteOPA.png" width="350"/>  
+- [VR Goggles](https://www.amazon.com/dp/B01M3RN5X7/?coliid=I1A8O2H72PV38Y&colid=2SN8Q5C0S8ZID&psc=0&ref_=lv_ov_lig_dp_it)
 
-#### 2. The Camera
+
+#### 2. The light source
+We choose to use 10 white light LEDs and use a LED driver for pulse with modulation dimming.
+- [White LEDs](https://eu.mouser.com/ProductDetail/Osram-Opto-Semiconductor/LW-TWTGBB-BXCX-2B12C3-Z486?qs=sGAEpiMZZMv0NwlthflBi3P09y5JMSjSKTpEPPMo8d0=)
+- [LED driver](https://eu.mouser.com/ProductDetail/Texas-Instruments/TPS61161ADRVR?qs=fvVej%2FMj3jdhGttLWUDBiA==)
+
+#### 3. The Camera
 We used an NoIR camera (i.e. no IR *filter*, therefore it can see IR) with a long wavelength LED to record pupil responses
 - [Raspberry Pi NoIR Camera Board v2 - 8 Megapixels](https://www.adafruit.com/product/3100)
-- [Super-bright 5mm IR LED - 940nm](https://www.adafruit.com/product/388)
-
-#### 3. Button
-- [Push button](https://www.amazon.com/dp/B07RW2YZ4W/?coliid=I2LNKEV2ZDSZ70&colid=2SN8Q5C0S8ZID&psc=1&ref_=lv_ov_lig_dp_it)
+- [IR LEDs](https://eu.mouser.com/ProductDetail/Kingbright/APT2012SF4C-PRV?qs=f499HRGa1RnfiWuPE%2FmgSQ==)
 
 #### 4. The raspberry pi
-A raspberry pi controls the light source, the camera, button presses and stores all the data. Because the LEDs run on 12V, we used a buck converter so the Pi and the LEDs could run off the same power adapter.
+A raspberry pi controls the light source, the camera, button presses and stores all the data.
 - [Raspberry Pi Zero W](https://www.adafruit.com/product/3708)
-- [Micro SD card](https://www.adafruit.com/product/2693)
-- [Zero2Go Omini – Multi-Channel Power Supply for Raspberry Pi](https://www.adafruit.com/product/4114)
-- [12V DC 1000mA (1A) regulated switching power adapter - UL listed](https://www.adafruit.com/product/798)
 
-#### 5. Housing
-We used some PCB board to connect all LEDs. pAll parts were assembled inside a phone case to be able to use it with VR goggles
 
-</details>
 
+<!-- </details> -->
+
+## Results
+I successfully built a prototype that tracks pupil size throughout a few minutes of recording. Below is an example of a pupil constriction in response to a light pulse, as well as the pupil detection by the openCV-based algorithm  
+<img src="Resources/PupilReflex2.gif" width="250"/>  
+<img src="Resources/Circle.png" width="250"/>  
+
+Tracking the size over time will look something like this:  
+<img src="Resources/Rplot01.png" width="250"/>   
+
+## Detailed instructions on how to build this yourself, including all the open-source files, will be released upon publication of the validation study.
+<!--
 ## Assembling the parts
 
 
@@ -69,8 +80,8 @@ http://abyz.me.uk/rpi/pigpio/python.html#hardware_PWM
 
 #### enable the camera
 `sudo raspi-config`
-5 interfacing options --> P1 Camera -->  <Yes>
-7 advanced options --> A3 Memory split --> 256
+5 interfacing options -> P1 Camera ->  <Yes>
+7 advanced options -> A3 Memory split -> 256
 
 `sudo apt-get install ffmpeg`
 
@@ -270,4 +281,4 @@ sudo python3 setup.py install
 
 # PCB desing
 Designed with [KiCad](https://kicad.org/download/)
-following [this](https://www.youtube.com/watch?v=vaCVh2SAZY4&ab_channel=Digi-Key) tutorial series
+following [this](https://www.youtube.com/watch?v=vaCVh2SAZY4&ab_channel=Digi-Key) tutorial series -->
